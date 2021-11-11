@@ -1,0 +1,27 @@
+{
+  "name": "niche-website-server",
+  "version": "1.0.0",
+  "description": "\"# niche-website-server-side-thezamalian\"",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^4.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/programming-hero-web-course-4/niche-website-server-side-thezamalian.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/programming-hero-web-course-4/niche-website-server-side-thezamalian/issues"
+  },
+  "homepage": "https://github.com/programming-hero-web-course-4/niche-website-server-side-thezamalian#readme"
+}
