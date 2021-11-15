@@ -78,6 +78,14 @@ async function run() {
             console.log("My orders has been loaded.");
             res.send(myOrders);
         });
+        // GET API - ALL Admins
+        app.get("/admins", async (req, res) => {
+            const cursor = adminCollection.find({});
+            const admins = await cursor.toArray();
+
+            console.log("All admins has been loaded.");
+            res.send(admins);
+        })
         // /////////////////////////////////////////
 
         // POST API - BOOK an order
@@ -120,35 +128,27 @@ async function run() {
         // ----------------------------
         // UPDATE API - update an order's status
         app.put('/orders/:id', async (req, res) => {
+            // console.log(updatedOrder);
             const id = req.params.id;
             const updatedOrder = req.body;
-            console.log(updatedOrder);
 
             const filter = { _id: ObjectId(id) };
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
-                    name: updatedOrder.name,
-                    price: updatedOrder.price,
-                    img: updatedOrder.img,
-                    details: updatedOrder.details,
-                    isPending: updatedOrder.isPending,
-                    user: updatedOrder.user
+                    isPending: updatedOrder.isPending
                 }
             };
             const result = await orderCollection.updateOne(filter, updateDoc, options);
 
-            res.json(result);
+            res.json(result)
         });
 
         // DELETE API - delete an order
         app.delete('/orders/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
-            console.log(id, query);
-
             const result = await orderCollection.deleteOne(query);
-            console.log(result);
             res.json(result);
         });
         // DELETE API - delete a PRODUCT
