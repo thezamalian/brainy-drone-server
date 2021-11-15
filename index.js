@@ -139,16 +139,22 @@ async function run() {
                     isPending: updatedOrder.isPending
                 }
             };
-            const result = await orderCollection.updateOne(filter, updateDoc, options);
-
-            res.json(result)
+            // const result = await orderCollection.updateOne(filter, updateDoc, options);
+            const updatedObject = await orderCollection.updateOne({ "_id": ObjectId(req.params.id) }, { $set: { isPending: false } });
+            console.log(updatedObject);
+            res.json(updatedObject)
         });
 
         // DELETE API - delete an order
         app.delete('/orders/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
+
             const result = await orderCollection.deleteOne(query);
+            const found = await orderCollection.findOne(query);
+            // const removedObject = await orderCollection.findOne({ "_id": ObjectId(req.params.id) });
+            console.log(result);
+            console.log(found);
             res.json(result);
         });
         // DELETE API - delete a PRODUCT
